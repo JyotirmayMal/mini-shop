@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrShop - Make a Purchase</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <div class="product-card">
+        <h2>Organic Turmeric</h2>
+        <p><strong>Quantity:</strong> 500g</p>
+        <p><strong>Price:</strong> $8</p>
+        <button id="rzp-button">Make Payment</button>
+    </div>
+    <script>
+        document.getElementById('rzp-button').onclick= function(e){
+            fetch('/order', {method: 'POST'})
+                .then(resonse => resonse.json())
+                .then(order => {
+                    const options = {
+                        "key" : "{{ key_id }}",
+                        "amount" : order.amount,
+                        "name": "PrShop",
+                        "description": "Payment for order #" + order.order_id,
+                        "order_id": order.order_id,
+                        "callback_url": "/verify"
+                    };
+
+                    const rzp = new Razorpay(options);
+                    rzp.open();
+                })
+                .catch(err => alert("Error creating order!"))
+        };
+    </script>
+</body>
+</html>
