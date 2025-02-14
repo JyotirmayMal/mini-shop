@@ -1,0 +1,15 @@
+{
+    "name": "Flask Dev",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [5000],
+    "postCreateCommand": "pip install -r requirements.txt",
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "bash"
+        }
+      }
+    }
+  }
