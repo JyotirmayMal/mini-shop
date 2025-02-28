@@ -8,5 +8,36 @@
 <body>
     <h2>"look at it"</h2>
     <!-- make a three product card which will have product name ,price , quantiity -->
+    <h2>Product List</h2>
+
+    <!-- Add Product Button -->
+    <a href="{{ url_for('add_product') }}" class="btn btn-add">Add New Product</a>
+
+    <!-- Product Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price (INR)</th>
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.p_name }}</td>
+                <td>{{ product.p_price }}</td>
+                <td>{{ product.p_quantity }}</td>
+                <td>
+                    <a href="{{ url_for('edit_product', id=product.id) }}" class="btn btn-edit">Edit</a>
+                    <a href="{{ url_for('delete_product', id=product.id) }}" class="btn btn-delete" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

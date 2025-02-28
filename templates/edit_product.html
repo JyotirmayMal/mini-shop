@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Product</title>
+</head>
+<body>
+    <h2>Edit Product</h2>
+    <form method="POST">
+        Name: <input type="text" name="p_name" value="{{ product.p_name }}" required><br>
+        Price: <input type="number" name="p_price" value="{{ product.p_price }}" required><br>
+        Quantity: <input type="number" name="p_quantity" value="{{ product.p_quantity }}" required><br>
+        <button type="submit">Update Product</button>
+    </form>
+    <a href="{{ url_for('view_products') }}">Back to Products</a>
+</body>
+</html>
